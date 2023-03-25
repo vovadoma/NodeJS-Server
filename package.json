@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-server",
+  "version": "1.0.0",
+  "description": "NodeJS Application Server",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vovadoma/NodeJS-Server.git"
+  },
+  "keywords": [
+    "node",
+    "esm",
+    "ts",
+    "open",
+    "api"
+  ],
+  "author": "Volodymyr Hubarenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vovadoma/NodeJS-Server/issues"
+  },
+  "homepage": "https://github.com/vovadoma/NodeJS-Server#readme"
+}
