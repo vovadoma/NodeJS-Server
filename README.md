@@ -1,2 +1,2 @@
 # NodeJS-Server
-NodeJS Application Swerver
+NodeJS Application Server
