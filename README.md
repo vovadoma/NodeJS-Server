@@ -19,6 +19,7 @@ ECMAScript, TypeScript
 - Domain multiple applications
 - RBAC
 - Oauth 2.0
+- Versions 
 
 #### Applications:
 - openprocurement.api’s parser and client
