@@ -17,6 +17,8 @@ ECMAScript, TypeScript
 - Entity: registerBalance, registerSale
 - Parser open API, workers, job, scheduling (app side)
 - Domain multiple applications
+- RBAC
+- Oauth 2.0
 
 #### Applications:
 - openprocurement.api’s parser and client
