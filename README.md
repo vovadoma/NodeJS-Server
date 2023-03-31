@@ -17,6 +17,7 @@ ECMAScript, TypeScript
 - Entity: registerBalance, registerSale
 - Parser open API, workers, job, scheduling (app side)
 - Domain multiple applications
+- Bus for external API (like metacom bus)
 - RBAC
 - Oauth 2.0
 - Versions 
@@ -26,7 +27,7 @@ ECMAScript, TypeScript
 - messenger (course task)
   
 #### Open API:
-- https://public.api.openprocurement.org/api/2.3/tenders
+- https://public.api.openprocurement.org/api/2.3/tenders (bus.openprocurement.getTender(id))
 - any currency rates
 - OpenDataBot
 
