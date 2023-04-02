@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('node:path');
-import { loadEnv, loadDir } from './src/loader';
+import { loadEnv, loadDir, loadApps } from './src/loader';
 
 (async () => {
   const sandbox = {
@@ -11,11 +11,19 @@ import { loadEnv, loadDir } from './src/loader';
 
   const rootPath = process.cwd();
   const appPath = process.env.APPS_PATH || path.join(process.cwd(), './apps');
-  const configPathServer = path.join(rootPath, './config');
-  const configPathApps = path.join(appPath, './config');
+  const configPath = path.join(rootPath, './config');
 
   await loadEnv(rootPath);
-  const config = await loadDir([configPathServer, configPathApps], sandbox);
+  const config = await loadDir(configPath, sandbox);
+
+  const routing = await loadApps(
+    appPath, {
+      configPath: './config',
+      apiPath: './api',
+    },
+    sandbox
+  );
 
   console.log(config);
+  console.log(routing);
 })();

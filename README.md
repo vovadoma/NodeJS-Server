@@ -11,8 +11,7 @@ ECMAScript, TypeScript
 - CRUD API (auto generation from the schema, JSON:API)
 - JSON:API query builder to PostgresSQL
 - Serialize JSON:API (on/off)
-- Dictionary API (memory cache, ws update)
-- Dictionary API (periodical values)
+- Dictionary API (memory cache, ws update, periodical, pre defined)
 - Entity: document, tablePart, docList
 - Entity: registerBalance, registerSale
 - Parser open API, workers, job, scheduling (app side)

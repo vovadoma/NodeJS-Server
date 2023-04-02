@@ -18,22 +18,33 @@ const load = async (filePath, sandbox, contextualize = false) => {
   return script.runInContext(context, OPTIONS);
 };
 
-const loadDir = async (dirs, sandbox, contextualize = false) => {
+const loadDir = async (dir, sandbox, contextualize = false) => {
+  const files = await fsp.readdir(dir, { withFileTypes: true });
   const container = {};
-  for (const dir of (Array.isArray(dirs) ? dirs : [dirs])) {
-    const exists = await fsp.access(dir).then(() => true).catch(() => false);
-    if (!exists) continue;
-    const files = await fsp.readdir(dir, { withFileTypes: true });
-    for (const file of files) {
-      const { name } = file;
-      if (file.isFile() && !name.endsWith('.js')) continue;
-      const location = path.join(dir, name);
-      const key = path.basename(name, '.js');
-      const loader = file.isFile() ? load : loadDir;
-      container[key] = await loader(location, sandbox, contextualize);
-    }
+  for (const file of files) {
+    const { name } = file;
+    if (file.isFile() && !name.endsWith('.js')) continue;
+    const location = path.join(dir, name);
+    const key = path.basename(name, '.js');
+    const loader = file.isFile() ? load : loadDir;
+    container[key] = await loader(location, sandbox, contextualize);
   }
   return container;
+};
+
+const loadApps = async (appDir, params, sandbox, contextualize = false) => {
+  let routing = {};
+  const { configPath, apiPath } = params;
+  const dirs = await fsp.readdir(appDir, { withFileTypes: true });
+  for (const dir of dirs) {
+    if (dir.isFile()) continue;
+    const { name } = dir;
+    const appConfig = await loadDir(path.join(appDir, name, configPath), sandbox);
+    const appSandbox = Object.freeze({ ...sandbox , ...{ config: appConfig }});
+    const appRouting = await loadDir(path.join(appDir, name, apiPath), appSandbox);
+    routing = { ...routing, ...appRouting };
+  }
+  return routing;
 };
 
 const loadEnv = async (dir, name = '.env') => {
@@ -50,4 +61,4 @@ const loadEnv = async (dir, name = '.env') => {
   }
 };
 
-module.exports = { load, loadDir, loadEnv };
+module.exports = { load, loadDir, loadEnv, loadApps };
