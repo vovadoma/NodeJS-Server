@@ -1,15 +1,26 @@
 'use strict';
 
-const fsp = require('node:fs').promises;
-const vm = require('node:vm');
-const path = require('node:path');
+import * as fsp from 'node:fs/promises';
+import vm from 'node:vm';
+import path from 'node:path';
 
 const OPTIONS = {
   timeout: 5000,
-  displayErrors: false,
+  displayErrors: false
 };
 
 const load = async (filePath, sandbox, contextualize = false) => {
+  const src = await fsp.readFile(filePath, 'utf8');
+  const context = vm.createContext({ ...sandbox });
+  const module = new vm.SourceTextModule(src, { context });
+  await module.link(() => {});
+  const m = await module.evaluate();
+  console.log(m)
+  return {}; //module.evaluate();
+  //return vm.runInContext(src, context);
+};
+
+const loadOld = async (filePath, sandbox, contextualize = false) => {
   const src = await fsp.readFile(filePath, 'utf8');
   const opening = contextualize ? '(context) => ' : '';
   const code = `'use strict';\n${opening}{\n${src}\n}`;
@@ -61,4 +72,4 @@ const loadEnv = async (dir, name = '.env') => {
   }
 };
 
-module.exports = { load, loadDir, loadEnv, loadApps };
+export { load, loadDir, loadEnv, loadApps };

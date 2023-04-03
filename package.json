@@ -5,8 +5,10 @@
   "license": "MIT",
   "private": true,
   "main": "main.js",
+  "type":"module",
   "scripts": {
     "dev": "nodemon --exec ts-node --files ./main.js",
+    "devesm": "node --experimental-vm-modules ./main.js",
     "build": "tsc --build ./",
     "db": "sudo docker-compose up -d",
     "test": "npm run lint && tsc",
