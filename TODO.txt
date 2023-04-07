@@ -1,6 +1,6 @@
 1. logger
 2. api
-3. db schema, json, Prisma
+3. db schema, json, Prisma. convert from ?? to ??. use Prisma only for dev.
 4. crud
 5. dictionary
 6. errors
