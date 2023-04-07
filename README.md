@@ -22,8 +22,9 @@ ECMAScript, TypeScript
 - Versions 
 
 #### Applications:
-- openprocurement.api’s parser and client
+- quiz (learn english words, use any open api for words and translate)
 - messenger (course task)
+- openprocurement.api’s parser and client
   
 #### Open API:
 - https://public.api.openprocurement.org/api/2.3/tenders (bus.openprocurement.getTender(id))
