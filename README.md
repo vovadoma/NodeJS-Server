@@ -1,10 +1,7 @@
 # NodeJS-Server
 NodeJS Application Server
 
-ECMAScript, TypeScript
-
 #### Features
-
 - Simple DB migration, DB generation or Prisma (schema generate)
 - Schema JSON, validation, d.ts
 - API transport (http/ws)
@@ -19,12 +16,13 @@ ECMAScript, TypeScript
 - Bus for external API (like metacom bus)
 - RBAC
 - Oauth 2.0
-- Versions 
+- Versions
 
 #### Applications:
-- openprocurement.api’s parser and client
+- quiz (learn english words, use any open api for words and translate)
 - messenger (course task)
-  
+- openprocurement.api’s parser and client
+
 #### Open API:
 - https://public.api.openprocurement.org/api/2.3/tenders (bus.openprocurement.getTender(id))
 - any currency rates
