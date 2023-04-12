@@ -50,15 +50,16 @@ const loadApps = async (appDir, params, sandbox, contextualize = false) => {
 const loadEnv = async (dir, name = '.env') => {
   const location = path.join(dir, name);
   const exists = await fsp.access(location).then(() => true).catch(() => false);
-  if (exists) {
-    const src = await fsp.readFile(location, 'utf8');
-    (src.split('\n') || []).forEach(line => {
-      const value = line.split('=').map(v => (v || '').trim());
-      if (value[0] && value[1]) {
-        process.env[value[0]] = value[1];
-      }
-    })
+  if (!exists) {
+    return;
   }
+  const src = await fsp.readFile(location, 'utf8');
+  src?.split('\n').forEach(line => {
+    const value = line.split('=').map(v => v.trim());
+    if (value[0] && value[1]) {
+      process.env[value[0]] = value[1];
+    }
+  })
 };
 
 export { load, loadDir, loadEnv, loadApps };
