@@ -10,7 +10,7 @@
     "build": "tsc --build ./",
     "db": "sudo docker-compose up -d",
     "test": "npm run lint && tsc",
-    "lint": "eslint . && prettier -c \"**/*.js\" \"**/*.ts\"",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fmt": "prettier --write \"**/*.js\" \"**/*.ts\""
   },
   "engines": {

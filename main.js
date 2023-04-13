@@ -1,11 +1,10 @@
-'use strict';
+
 
 const path = require('node:path');
 import { Logger } from './lib/logger';
 import { loadEnv, loadDir, loadApps } from './src/loader';
 
 (async () => {
-
   const sandbox = {
     process,
   };
@@ -21,13 +20,14 @@ import { loadEnv, loadDir, loadApps } from './src/loader';
   sandbox.console = Object.freeze(logger);
 
   const routing = await loadApps(
-    appPath, {
+    appPath,
+    {
       configPath: './config',
       apiPath: './api',
     },
-    sandbox
+    sandbox,
   );
 
   logger.log(config);
-  logger.log(routing);
+  logger.warn(routing);
 })();
