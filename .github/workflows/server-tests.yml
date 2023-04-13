@@ -17,8 +17,6 @@ jobs:
     name: Run linter & tests
     runs-on: ubuntu-latest
 
-    defaults:
-
     steps:
       - uses: actions/checkout@v3
 
