@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fsp = require('node:fs').promises;
 const vm = require('node:vm');
@@ -39,9 +39,17 @@ const loadApps = async (appDir, params, sandbox, contextualize = false) => {
   for (const dir of dirs) {
     if (dir.isFile()) continue;
     const { name } = dir;
-    const appConfig = await loadDir(path.join(appDir, name, configPath), sandbox);
-    const appSandbox = Object.freeze({ ...sandbox , ...{ config: appConfig }});
-    const appRouting = await loadDir(path.join(appDir, name, apiPath), appSandbox);
+    const appConfig = await loadDir(
+      path.join(appDir, name, configPath),
+      sandbox,
+      contextualize
+    );
+    const appSandbox = Object.freeze({ ...sandbox, ...{ config: appConfig } });
+    const appRouting = await loadDir(
+      path.join(appDir, name, apiPath),
+      appSandbox,
+      contextualize
+    );
     routing = { ...routing, ...appRouting };
   }
   return routing;
@@ -49,17 +57,20 @@ const loadApps = async (appDir, params, sandbox, contextualize = false) => {
 
 const loadEnv = async (dir, name = '.env') => {
   const location = path.join(dir, name);
-  const exists = await fsp.access(location).then(() => true).catch(() => false);
+  const exists = await fsp
+    .access(location)
+    .then(() => true)
+    .catch(() => false);
   if (!exists) {
     return;
   }
   const src = await fsp.readFile(location, 'utf8');
-  src?.split('\n').forEach(line => {
-    const value = line.split('=').map(v => v.trim());
+  src?.split('\n').forEach((line) => {
+    const value = line.split('=').map((v) => v.trim());
     if (value[0] && value[1]) {
       process.env[value[0]] = value[1];
     }
-  })
+  });
 };
 
-module.exports = { load, loadDir, loadEnv, loadApps };
+export { load, loadDir, loadEnv, loadApps };

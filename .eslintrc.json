@@ -1,15 +1,14 @@
 {
-  "env": {
+  "globals": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "BigInt": true
   },
   "extends": "eslint:recommended",
   "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "globals": {
-    "BigInt": true
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "rules": {
     "indent": [
@@ -153,8 +152,8 @@
     "space-before-function-paren": [
       "error",
       {
-        "anonymous": "never",
-        "named": "never",
+        "anonymous": "always",
+        "named": "always",
         "asyncArrow": "always"
       }
     ],
@@ -175,6 +174,9 @@
         }
       }
     ],
+    "no-undef": [
+      "off"
+    ],
     "no-unreachable": [
       "error"
     ],
@@ -193,9 +195,6 @@
         "checkLoops": false
       }
     ],
-    "no-console": [
-      "off"
-    ],
     "no-useless-concat": [
       "error"
     ],
@@ -210,10 +209,6 @@
       {
         "functions": false
       }
-    ],
-    "arrow-parens": [
-      "error",
-      "always"
     ],
     "arrow-body-style": [
       "error",
@@ -263,6 +258,13 @@
     "template-curly-spacing": [
       "error",
       "never"
-    ]
+    ],
+    "lines-between-class-members": [
+      "error",
+      "always"
+    ],
+    "no-multi-spaces": "error",
+    "no-console": "error",
+    "no-tabs": "error"
   }
 }

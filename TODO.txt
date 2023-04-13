@@ -6,3 +6,10 @@
 6. errors
 7. tests
 8. security
+
+Need learn:
+1. App Data Flow (db, domain, api and etc.)
+
+logger add:
+- json format to std out
+- renew date file log name each save or pino can
