@@ -1,15 +1,10 @@
-1. logger
-2. api
-3. db schema, json, Prisma. convert from ?? to ??. use Prisma only for dev.
-4. crud
-5. dictionary
-6. errors
-7. tests
-8. security
-
-Need learn:
-1. App Data Flow (db, domain, api and etc.)
-
-logger add:
-- json format to std out
-- renew date file log name each save or pino can
+20-04-2023
+==========
+1. json schema. Конвертація схеми в SQL синтаксис міграції та в типи TS.
+2. https://github.com/salsita/node-pg-migrate як варіант.
+3. https://www.npmjs.com/package/sql-template-strings для SQL запитів.
+4. Валідація: сервер на апі та з апі, валідація на фронті від/на сервер,
+   не на продакшині валідація для з/в базу та контрактів між доменной логікой.
+5. Common загальний для беку та фронті для: схем, валідацію, типи TS та інше.
+6. Oauth2 редірект та колбек на фронті, далі отримання токена на фронті або
+   відправлення коду на бек і там пост запит на отримання токену.
