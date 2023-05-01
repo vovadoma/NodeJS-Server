@@ -1,5 +1,5 @@
 ({
   url:
-    process.env.DATABASE_URL_MESSENDGER ||
-    'postgresql://postgres:postgres@localhost:5432/messendger',
+    process.env.DATABASE_URL_MESSENGER ||
+    'postgresql://postgres:postgres@localhost:5432/messenger',
 });
