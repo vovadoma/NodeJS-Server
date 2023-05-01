@@ -14,7 +14,7 @@ test('asynchronous passing test', async () => {
 });
 
 test('skip option', { skip: true }, () => {
-  pino.error({ok: 123});
+  pino.error({ ok: 123 });
   assert.strictEqual(1, 2);
 });
 
