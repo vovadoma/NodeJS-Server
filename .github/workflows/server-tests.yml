@@ -1,7 +1,7 @@
 name: Server Lint & Tests
 
 env:
-  NODE_VERSION: 16.13.0
+  NODE_VERSION: 16.20.0
   YARN_VERSION: 1.22.4
 
 on:
