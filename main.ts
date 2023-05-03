@@ -3,7 +3,8 @@ import { Logger } from './lib/logger.js';
 import { loadEnv, loadDir, loadApps } from './src/loader.js';
 
 (async () => {
-  const sandbox = {
+
+  const sandbox: any = {
     process,
   };
 
@@ -12,20 +13,26 @@ import { loadEnv, loadDir, loadApps } from './src/loader.js';
   const configPath = path.join(rootPath, './config');
 
   await loadEnv(rootPath);
-  const config = await loadDir(configPath, sandbox);
+  const config: any = await loadDir(configPath, sandbox);
 
   const logger = new Logger(config.logger);
   sandbox.logger = Object.freeze(logger);
 
-  const routing = await loadApps(
+  sandbox.admin = (await import('./apps/core/domain/admin')).init();
+
+  const routing: any = await loadApps(
     appPath,
     {
       configPath: './config',
       apiPath: './api',
     },
     sandbox,
+    true
   );
 
-  logger.log(config);
-  logger.warn(routing);
+  console.dir(routing);
+  const proc = routing.core.oauth.login;
+  console.dir(proc());
+  console.dir(await (await proc()).method());
+
 })();

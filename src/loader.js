@@ -1,6 +1,7 @@
 import { readFile, readdir, access } from 'node:fs/promises';
 import vm from 'node:vm';
 import path from 'node:path';
+import { promises as fsp } from 'node:fs';
 
 const OPTIONS = {
   timeout: 5000,
@@ -8,16 +9,16 @@ const OPTIONS = {
 };
 
 const load = async (filePath, sandbox, contextualize = false) => {
-  const src = await readFile(filePath, 'utf8');
+  const src = await fsp.readFile(filePath, 'utf8');
   const opening = contextualize ? '(context) => ' : '';
-  const code = `'use strict';\n${opening}{\n${src}\n}`;
-  const script = new vm.Script(code, { ...OPTIONS, lineOffset: -2 });
+  const code = `'use strict';\n${opening}${src}`;
+  const script = new vm.Script(code, { ...OPTIONS, lineOffset: -1 });
   const context = vm.createContext(Object.freeze({ ...sandbox }));
   return script.runInContext(context, OPTIONS);
 };
 
 const loadDir = async (dir, sandbox, contextualize = false) => {
-  const files = await readdir(dir, { withFileTypes: true });
+  const files = await fsp.readdir(dir, { withFileTypes: true });
   const container = {};
   for (const file of files) {
     const { name } = file;
@@ -31,7 +32,7 @@ const loadDir = async (dir, sandbox, contextualize = false) => {
 };
 
 const loadApps = async (appDir, params, sandbox, contextualize = false) => {
-  let routing = {};
+  const routing = {};
   const { configPath, apiPath } = params;
   const dirs = await readdir(appDir, { withFileTypes: true });
   for (const dir of dirs) {
@@ -43,12 +44,11 @@ const loadApps = async (appDir, params, sandbox, contextualize = false) => {
       contextualize
     );
     const appSandbox = Object.freeze({ ...sandbox, ...{ config: appConfig } });
-    const appRouting = await loadDir(
+    routing[name] = await loadDir(
       path.join(appDir, name, apiPath),
       appSandbox,
       contextualize
     );
-    routing = { ...routing, ...appRouting };
   }
   return routing;
 };
