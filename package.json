@@ -7,7 +7,7 @@
   "main": "main.ts",
   "scripts": {
     "dev": "nodemon --exec ts-node --files main.ts",
-    "build": "tsc --build ./",
+    "build": "tsc --build .",
     "db": "sudo docker-compose up -d",
     "test": "node --test tests/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",

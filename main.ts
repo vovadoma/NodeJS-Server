@@ -18,6 +18,7 @@ import { loadEnv, loadDir, loadApps } from './src/loader.js';
   const logger = new Logger(config.logger);
   sandbox.logger = Object.freeze(logger);
 
+  // @ts-ignore
   sandbox.admin = (await import('./apps/core/domain/admin')).init();
 
   const routing: any = await loadApps(
