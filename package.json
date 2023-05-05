@@ -5,16 +5,17 @@
   "license": "MIT",
   "private": true,
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --exec ts-node --files ./main.js",
     "build": "tsc --build ./",
     "db": "sudo docker-compose up -d",
-    "test": "npm run lint && tsc",
+    "test": "node --test tests/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fmt": "prettier --write \"**/*.js\" \"**/*.ts\""
   },
   "engines": {
-    "node": "16 || 18 || 19"
+    "node": "16 || 18 || 19 || 20"
   },
   "dependencies": {
     "pg": "^8.8.0",
