@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { Logger } from './lib/logger.js';
-import { loadEnv, loadDir, loadApps } from './src/loader.js';
+import { loadEnv, loadDir, loadApps, loadConfig } from "./lib/loader.js";
 
 (async () => {
 
@@ -9,12 +9,10 @@ import { loadEnv, loadDir, loadApps } from './src/loader.js';
   };
 
   const rootPath = process.cwd();
-  const appPath = process.env.APPS_PATH || path.join(process.cwd(), './apps');
-  const configPath = path.join(rootPath, './config');
 
   await loadEnv(rootPath);
-  const config: any = await loadDir(configPath, sandbox);
-
+  const config: any = await loadConfig('./config');
+  const appPath = config.apps.path;
   const logger = new Logger(config.logger);
   sandbox.logger = Object.freeze(logger);
 
