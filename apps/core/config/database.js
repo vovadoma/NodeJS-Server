@@ -1,5 +1,7 @@
 ({
-  url:
-    process.env.DATABASE_URL_CORE ||
-    'postgresql://postgres:postgres@localhost:5433/node_server',
+  host: 'localhost',
+  port: 5433,
+  database: 'node_server',
+  user: 'postgres',
+  password: 'postgres',
 });
