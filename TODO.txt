@@ -23,3 +23,34 @@
 що умови могли змінитись за час виконання транзакції. Перевірка з урахуванням
 timestamp що перше сталось в базі.
 
+
+11-05-2023
+==========
+1. Замість ws краще використовувати HTTP2 or HTTP3
+2. Подивитись реалызацію metacom, rpc and etc.
+3. Щоб дійсно розуміти є з'єднання ws чи нема, треба робити ping-pong.
+4. https://nodejs.org/api/events.html#capture-rejections-of-promises
+   якщо async trow use EventEmitter.captureRejections = true;
+5. Не використовувати once, пямять може текти
+6. Структура проекту по модулям, як варіант:
+
+   users
+    - service
+    - repository
+    - api
+    - etc
+
+7. Транзакція
+    async withTransaction<T>(fn: () => Promise<T>): Promise<T> {
+        if (this.transaction) return fn();
+        await this.startTransaction();
+        try {
+          const res = await fn();
+          await this.commitTransaction();
+          return res;
+        } catch (err: unknown) {
+          await this.rollbackTransaction();
+          throw err;
+        }
+    }
+
