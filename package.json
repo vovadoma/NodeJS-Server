@@ -4,10 +4,9 @@
   "description": "NodeJS Application Server",
   "license": "MIT",
   "private": true,
-  "main": "main.ts",
-  "type": "module",
+  "main": "src/main.ts",
   "scripts": {
-    "dev": "nodemon --exec ts-node --files main.ts",
+    "dev": "nodemon --exec ts-node --esm --files src/main.ts",
     "build": "tsc --build .",
     "db": "sudo docker-compose up -d",
     "test": "node --test tests/",

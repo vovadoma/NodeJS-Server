@@ -1,7 +1,7 @@
 ({
   access: 'public',
   method: async () => {
-    await admin.create();
+    await domain.admin.create();
     return { status: 'logged' };
   },
 });

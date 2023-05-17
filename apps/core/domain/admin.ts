@@ -6,7 +6,10 @@ class Admin {
 
   async create () {
     console.log('admin created!!!');
+    console.info('logger');
+    // @ts-ignore
+    console['dir']('logger');
   }
 }
 
-export const init = () => new Admin();
+export default new Admin();
