@@ -4,15 +4,15 @@
   "description": "NodeJS Application Server",
   "license": "MIT",
   "private": true,
-  "main": "main.js",
-  "type": "module",
+  "main": "src/main.ts",
   "scripts": {
-    "dev": "nodemon --exec ts-node --files ./main.js",
-    "build": "tsc --build ./",
+    "dev": "nodemon --exec ts-node --esm --files src/main.ts",
+    "build": "tsc --build .",
     "db": "sudo docker-compose up -d",
     "test": "node --test tests/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "fmt": "prettier --write \"**/*.js\" \"**/*.ts\""
+    "fmt": "prettier --write \"**/*.js\" \"**/*.ts\"",
+    "migrate": "node lib/migrate.js"
   },
   "engines": {
     "node": "16 || 18 || 19 || 20"
@@ -24,7 +24,7 @@
     "ws": "^8.12.0"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
+    "@types/node": "^18.16.3",
     "@types/pg": "^8.6.6",
     "@types/ws": "^8.5.4",
     "eslint": "^8.31.0",

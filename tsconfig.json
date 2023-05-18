@@ -1,14 +1,33 @@
 {
   "compilerOptions": {
+    /* Language and Environment */
     "target": "ESNext",
+    "lib": ["esnext"],
+
+    /* Modules */
+    "module": "commonjs",
     "moduleResolution": "node",
-    "strict": true,
+    "resolveJsonModule": true,
+
+    /* Emit */
     "outDir": "dist",
-    "rootDir": "./",
-    "preserveWatchOutput": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+
+    /* Completeness */
+    "skipLibCheck": true,
+    "typeRoots": [".src/types"],
+    "types": ["node"],
+
+    /* JavaScript Support */
     "allowJs": true,
-    "noEmit": true,
-    "skipLibCheck": true
+    "checkJs": false
   },
   "include": ["*", "**/*"]
 }
