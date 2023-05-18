@@ -18,6 +18,7 @@ NodeJS Application Server
 - RBAC
 - Oauth 2.0
 - Versions
+- Cache like as memory Map or redis
 
 #### Applications:
 - quiz (learn english words, use any open api for words and translate)
