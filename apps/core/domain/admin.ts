@@ -1,10 +1,10 @@
 class Admin {
 
-  constructor () {
+  constructor() {
     console.log('construct');
   }
 
-  async create () {
+  async create() {
     console.log('admin created!!!');
     console.info('logger');
     // @ts-ignore

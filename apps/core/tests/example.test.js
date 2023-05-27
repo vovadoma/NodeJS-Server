@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, it, test } from 'node:test';
 import assert from 'node:assert';
-import { logger as pino } from '../lib/logger.js';
+import { logger as pino } from '../../../lib/logger.js';
 
 
 

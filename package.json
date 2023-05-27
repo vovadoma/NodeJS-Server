@@ -9,10 +9,11 @@
     "dev": "nodemon --exec ts-node --esm --files src/main.ts",
     "build": "tsc --build .",
     "db": "sudo docker-compose up -d",
-    "test": "node --test tests/",
+    "test": "node --test apps/core/tests/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fmt": "prettier --write \"**/*.js\" \"**/*.ts\"",
-    "migrate": "node lib/migrate.js"
+    "migrate": "node lib/migrate.js",
+    "seed": "node lib/seed.js"
   },
   "engines": {
     "node": "16 || 18 || 19 || 20"

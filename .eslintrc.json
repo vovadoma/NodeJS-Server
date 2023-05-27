@@ -5,8 +5,10 @@
     "node": true
   },
   "extends": "eslint:recommended",
+  "ignorePatterns": ["pgdata/", "dist/"],
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "globals": {
     "BigInt": true

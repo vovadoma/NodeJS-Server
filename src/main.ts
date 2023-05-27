@@ -1,11 +1,16 @@
 import path from 'node:path';
 import { Logger } from '../lib/logger.js';
 import { loadEnv, loadDir, loadApps, loadConfig } from "../lib/loader.js";
+import * as common from "../lib/common.js";
+import crud from "../lib/crud.js";
 
 (async () => {
 
   const sandbox: any = {
+    //common,
     process,
+    crud: null,
+    logger: null,
   };
 
   const rootPath = process.cwd();
@@ -16,6 +21,7 @@ import { loadEnv, loadDir, loadApps, loadConfig } from "../lib/loader.js";
   const logger = new Logger(config.logger);
 
   sandbox.logger = Object.freeze(logger);
+  sandbox.crud = Object.freeze(crud(config.db));
 
   const routing: any = await loadApps(
     appPath,
@@ -28,10 +34,10 @@ import { loadEnv, loadDir, loadApps, loadConfig } from "../lib/loader.js";
     true
   );
 
-  //console.dir(routing);
-  const proc = routing.core.oauth.login;
+  console.dir(routing);
+  //const proc = routing.core.oauth.login;
   //console.dir(proc());
-  console.dir(await (await proc()).method());
+  //console.dir(await (await proc()).method());
 
 
 })();

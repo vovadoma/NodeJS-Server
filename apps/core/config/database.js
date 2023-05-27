@@ -1,7 +1,7 @@
 ({
   host: 'localhost',
-  port: 5433,
-  database: 'node_server',
+  port: 5432,
+  database: 'core',
   user: 'postgres',
   password: 'postgres',
 });
