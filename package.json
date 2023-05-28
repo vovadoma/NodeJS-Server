@@ -12,8 +12,9 @@
     "test": "node --test apps/core/tests/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "fmt": "prettier --write \"**/*.js\" \"**/*.ts\"",
-    "migrate": "node lib/migrate.js",
-    "seed": "node lib/seed.js"
+    "setup": "node lib/database/setup.js core messenger quiz",
+    "migrate": "node lib/database/migrate.js core messenger quiz",
+    "seed": "node lib/database/seed.js core messenger quiz"
   },
   "engines": {
     "node": "16 || 18 || 19 || 20"
