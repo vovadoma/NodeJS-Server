@@ -1,4 +1,0 @@
-DROP DATABASE IF EXISTS messenger;
-DROP USER IF EXISTS marcus;
-CREATE USER marcus WITH PASSWORD 'marcus';
-CREATE DATABASE messenger OWNER marcus;
